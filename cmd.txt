@@ -1,0 +1,3 @@
+# check package version
+# in Terminal
+pip show pkg
