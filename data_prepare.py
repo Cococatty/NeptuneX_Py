@@ -35,10 +35,12 @@ data_all_processed = data_all
 data_all_processed = data_all_processed.astype({"Amount": np.float32,
                                                 "randomized": np.bool_,
                                                 "Date": np.dtype("M")})
-
+te = 2.11
+type(te)
 data_all_processed.dtypes
+data_all_processed.dtypes[["Amount"]]
 
-data_all_processed["Date"]
+
 
 data_all_processed[["Amount"]] = data_all_processed[["Amount"]].astype(np.round(decimals=2))
 
