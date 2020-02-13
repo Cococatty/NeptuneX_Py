@@ -1,5 +1,28 @@
 import pandas as pd
 
+###########             MASTER FUNCTIONS             ###########
+def buildFileName(fileName):
+    # filePath =
+    return(path_data_source+ "\\" + fileName)
+
+
+def load_data(acct_dict):
+    for name in acct_dict:
+        # acctName, fileName
+        fileName = acct_dict[name]
+        acctName = "data_" + name
+        acctData = pd.read_csv(buildFileName(fileName))
+
+# TBC
+        # globals or exec()
+#         https: // stackoverflow.com / questions / 14764088 / set - the - name - of - a - python - object - variable -
+#         with-a - string
+        globals()[acctName ] = acctData
+
+# data_daily = pd.read_csv(buildFileName(acct_name_daily))
+
+
+###########             MASTER DATA             ###########
 
 path_data_source = "C:\Projects\_SourceData_Personal"
 metadata_name= "Trasns_Metadata.xlsx"
@@ -18,35 +41,14 @@ acct_dict = {
     "homebill" : "A0315920567389025-10Mar14.csv",
 }
 
-###########             MASTER FUNCTIONS             ###########
-def buildFileName(fileName):
-    # filePath =
-    return(path_data_source+ "\\" + fileName)
-
-
-def load_data():
-    for name in acct_dict:
-        # acctName, fileName
-        fileName = acct_dict[name]
-        acctName = "data_" + name
-        acctData = pd.read_csv(buildFileName(fileName))
-
-# TBC
-        # globals or exec()
-#         https: // stackoverflow.com / questions / 14764088 / set - the - name - of - a - python - object - variable -
-#         with-a - string
-        globals()[acctName ] = acctData
-
-# data_daily = pd.read_csv(buildFileName(acct_name_daily))
-
-
 ###########             LOAD MASTER DATA             ###########
 metadata_structure = pd.DataFrame(
     pd.read_excel(buildFileName(metadata_name), sheet_name="AccountMapping")
 )
 
+load_data(acct_dict)
 
 
 print(data_daily[1:5])
-print(metadata_structure [1:5])
+print(metadata_structure [1:10])
 
